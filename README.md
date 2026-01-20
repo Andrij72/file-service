@@ -1,0 +1,2 @@
+# 📦 **File Service**
+File-service is a microservice for the Grid project responsible for storing and serving files (product images, PDFs, and other documents) via an S3-compatible MinIO storage. Other services (Product, Order, Inventory) access files through its REST API.
