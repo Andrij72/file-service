@@ -1,0 +1,80 @@
+{
+  "info": {
+    "name": "File Service API",
+    "_postman_id": "f3c1a2b8-1234-5678-9012-abcdef123456",
+    "description": "Postman collection for File Service (SKU-based image upload, preview, download)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Upload Product Image",
+      "request": {
+        "method": "POST",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "/path/to/image.webp"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8087/api/v1/files/upload/product/SKU111",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8087",
+          "path": [
+            "api",
+            "v1",
+            "files",
+            "upload",
+            "product",
+            "SKU111"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Preview Product Image",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8087/api/v1/files/preview/SKU111/f4faa330-287c-4f1f-b073-ff9815746e5b.webp",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8087",
+          "path": [
+            "api",
+            "v1",
+            "files",
+            "preview",
+            "SKU111",
+            "f4faa330-287c-4f1f-b073-ff9815746e5b.webp"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Download Product Image",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8087/api/v1/files/download/SKU111/f4faa330-287c-4f1f-b073-ff9815746e5b.webp",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8087",
+          "path": [
+            "api",
+            "v1",
+            "files",
+            "download",
+            "SKU111",
+            "f4faa330-287c-4f1f-b073-ff9815746e5b.webp"
+          ]
+        }
+      }
+    }
+  ]
+}

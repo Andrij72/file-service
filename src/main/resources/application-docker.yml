@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:mysql://mysql-file:3306/file_service
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASS}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+server:
+  port: 8087
+
+minio:
+  url: http://minio:9000
+  access-key: minio
+  secret-key: minio123
+  bucket: microservice-files
+
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/

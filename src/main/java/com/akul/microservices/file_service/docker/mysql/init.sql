@@ -1,0 +1,5 @@
+CREATE DATABASE IF NOT EXISTS file_service;
+
+CREATE USER IF NOT EXISTS 'usermysql'@'%' IDENTIFIED BY 'mysql';
+GRANT ALL PRIVILEGES ON file_service.* TO 'usermysql'@'%';
+FLUSH PRIVILEGES;
