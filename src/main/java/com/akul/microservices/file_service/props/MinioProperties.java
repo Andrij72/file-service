@@ -16,6 +16,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "minio")
 public class MinioProperties {
     private String url;
+    private String publicUrl;
     private String accessKey;
     private String secretKey;
     private String bucket;

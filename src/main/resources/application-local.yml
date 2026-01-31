@@ -19,9 +19,10 @@ server:
 
 minio:
   url: http://localhost:9001
+  public-url: http://localhost:9100
   access-key: minio
   secret-key: minio123
-  bucket: microservice-files
+  bucket: product-images
 
 eureka:
   client:

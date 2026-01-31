@@ -1,2 +1,126 @@
-# 📦 **File Service**
-File-service is a microservice for the Grid project responsible for storing and serving files (product images, PDFs, and other documents) via an S3-compatible MinIO storage. Other services (Product, Order, Inventory) access files through its REST API.
+# 📁 File Service API
+
+The **File Service** handles product file storage using **MinIO** and provides endpoints for uploading, previewing, and downloading files.
+
+It is part of the **Microservice Grid** ecosystem and works through the **API Gateway** with authentication via **Keycloak**.
+
+---
+
+## 🛠️ Endpoints Overview
+
+### 1️⃣ Upload Product Image
+
+Uploads an image for a product identified by SKU.
+
+**Request**
+POST /api/v1/files/upload/product/{sku}
+
+
+**Path Parameter**
+
+| Name | Type   | Description    |
+|------|--------|----------------|
+| sku  | String | Product SKU    |
+
+**Form Data**
+
+| Name | Type          | Description      |
+|------|---------------|----------------|
+| file | MultipartFile | Image file to upload |
+
+**Response**
+```json
+{
+  "objectName": "string",   // Full path in MinIO
+  "contentType": "string",  // MIME type of the file
+  "size": 12345,            // File size in bytes
+  "presignedUrl": "string"  // Temporary URL for direct access (valid 1 hour)
+}
+
+```
+Notes
+
+    Use the returned objectName for preview or download.
+    
+    Endpoints are secured via Keycloak JWT tokens.
+    
+    Works through the API Gateway.
+
+### 2️⃣ Preview Product Image
+Generates a presigned URL to preview a product image.
+
+**Request**
+````
+GET /api/v1/files/preview
+````
+Query Parameter
+
+Name	Type	Description
+objectName	String	Full object path in MinIO (from upload response)
+Response
+
+200 OK
+string   // Presigned URL valid for 1 hour
+Notes
+
+Use the exact objectName returned from the upload endpoint.
+
+Endpoints are secured via Keycloak JWT tokens.
+
+Works through the API Gateway.
+
+3️⃣ Download Product Image
+Download a product image as a file attachment.
+
+Request
+
+GET /api/v1/files/download
+Query Parameter
+
+Name	Type	Description
+objectName	String	Full path in MinIO (from upload)
+Response
+
+Returns file as attachment
+
+Headers
+
+Content-Disposition: attachment; filename="filename.jpg"
+Content-Type: application/octet-stream
+Notes
+
+Use the exact objectName returned by the upload endpoint.
+
+Endpoints are secured via Keycloak JWT tokens.
+
+Works through the API Gateway.
+
+Presigned URLs are valid for 1 hour.
+
+---
+
+## 🔐 Security
+Authentication: Keycloak (OAuth2 / OpenID Connect)
+
+Authorization: Role-based access (ADMIN / CLIENT)
+
+Service-to-service: Client credentials flow
+
+----
+
+## 🛠 Technology Stack
+
+* Java 21 / Spring Boot 3
+* Spring WebFlux (Reactive)
+* MinIO for object storage
+* MySQL for File Service metadata
+* Keycloak for authentication/authorization
+* Spring Security / OAuth2
+* Docker / Docker Compose`
+----
+
+👨‍💻 Author
+Andrii Kulynch
+
+📅 Version: 2.0
+

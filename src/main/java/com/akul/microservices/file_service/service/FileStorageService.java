@@ -49,13 +49,17 @@ public class FileStorageService {
     }
 
     public String presignedUrl(String objectName, Duration expiry) throws Exception {
-        return minioClient.getPresignedObjectUrl(
+        String url = minioClient.getPresignedObjectUrl(
                 GetPresignedObjectUrlArgs.builder()
                         .method(Method.GET)
                         .bucket(properties.getBucket())
                         .object(objectName)
                         .expiry((int) expiry.getSeconds())
                         .build()
+        );
+        return url.replace(
+                properties.getUrl(),
+                properties.getPublicUrl()
         );
     }
 }

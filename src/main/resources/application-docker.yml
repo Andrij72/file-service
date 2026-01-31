@@ -21,7 +21,8 @@ minio:
   url: http://minio:9000
   access-key: minio
   secret-key: minio123
-  bucket: microservice-files
+  bucket: product-images
+  public-url: http://localhost:9100
 
 eureka:
   client:
