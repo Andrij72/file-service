@@ -18,7 +18,7 @@ server:
   port: 8087
 
 minio:
-  url: http://localhost:9001
+  url: http://localhost:9100
   public-url: http://localhost:9100
   access-key: minio
   secret-key: minio123

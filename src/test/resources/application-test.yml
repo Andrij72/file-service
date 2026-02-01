@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   jpa:
     hibernate:
       ddl-auto: create
@@ -18,8 +20,9 @@ eureka:
     register-with-eureka: false
 
 minio:
-  enabled: false
-  url: http://localhost:9000
+  public-url: http://localhost:9000
   access-key: test
   secret-key: test
   bucket: test-bucket
+  url: http://localhost:9000
+  enabled: true

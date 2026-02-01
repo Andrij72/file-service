@@ -15,6 +15,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @ConfigurationProperties(prefix = "minio")
 public class MinioProperties {
+    private boolean enabled;
     private String url;
     private String publicUrl;
     private String accessKey;

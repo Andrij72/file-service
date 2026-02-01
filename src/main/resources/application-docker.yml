@@ -22,7 +22,7 @@ minio:
   access-key: minio
   secret-key: minio123
   bucket: product-images
-  public-url: http://localhost:9100
+  public-url: http://host.docker.internal:9100
 
 eureka:
   client:

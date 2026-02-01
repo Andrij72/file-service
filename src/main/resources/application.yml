@@ -2,7 +2,7 @@ spring:
   application:
     name: file-service
   profiles:
-    active: docker #local
+    active: local   #docker
 
 management:
   endpoints:

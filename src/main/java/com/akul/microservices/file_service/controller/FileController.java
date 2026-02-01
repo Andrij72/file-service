@@ -88,7 +88,7 @@ public class FileController {
     ) {
         try {
             String filename = objectName.substring(objectName.lastIndexOf('/') + 1);
-            InputStreamResource resource = fileStorageService.load(objectName);
+            InputStreamResource resource = fileStorageService.download(objectName);
 
             log.info("Downloading file, objectName={}", objectName);
 
